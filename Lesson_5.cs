@@ -11,7 +11,7 @@ namespace ConsoleApp5
         static void Main(string[] args)
         {
 
-
+            
 
             for (int i = 0; i <= 100; i++)
             {
@@ -24,16 +24,16 @@ namespace ConsoleApp5
               string st2 = "";
               for (int i = 0; i <= 5; i++)
               {
-                  st = st + " " + i;
-                  Console.Write(st);
-                  for (int j = 0; j <= 5; j++)
+                 // st = st + " " + i;
+                  Console.WriteLine(i);
+                  for (int j = 0; j <= i; j++)
                   {
-                      st2 = st2 + " " + j;
-                      Console.WriteLine(st2);
+                     // st2 = st2 + " " + j;
+                      Console.Write(j);
                   }
               }
 
-            Console.WriteLine("-------------------------------\n-----------------\n");
+            Console.WriteLine("\n\n-------------------------------\n-----------------\n");
 
             int money = 1536;
             int notes_200 = money / 200;
@@ -60,13 +60,88 @@ namespace ConsoleApp5
 
             int lessnotes_5 = lessnotes_10 % 5;
            
-            Console.WriteLine($"Our money is {money} NIS. We need {notes_200} banknotes of 200 NIS, {notes_100}  banknotes of 100 NIS{(notes_50==0 ? "" : ", banknotes of 50 NIS")}  , {notes_10} coins of 10 NIS, {notes_5} coins of 5 NIS and {lessnotes_5} cpins of 1 NIS");
+            Console.WriteLine($"Our money is {money} NIS. We need {notes_200}{(notes_200 == 0 ? "" : " banknotes of 200 NIS, ")} {notes_100}{(notes_100 == 0 ? "" : " banknotes of 100 NIS, ")} {notes_50}{(notes_50 == 0 ? "" : " banknotes of 50 NIS, ")}   {notes_10}{(notes_10 == 0 ? "" : " banknotes of 10 NIS, ")}  {notes_5}{(notes_5 == 0 ? "" : " banknotes of 5 NIS, ")}  and {lessnotes_5} coins of 1 NIS");
+
+
+
+
+            Console.WriteLine("\n\n-------------------------------\n-----------------\n");
+            
+
+
+            for (int i = 5; i > 0; i--)
+            {
+                for (int j = i; j > 0; j--) { Console.Write("*"); }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("\n");
+
+
+
+
+
+            Console.WriteLine("\n\n-------------------------------\n-----------------\n");
+
+
+
+
+
+            int sum = 0;
+            int n;
+            do
+            {
+                n = PleaseEnterSomeNumbers(1)[0];
+                sum = sum + n;
+            }
+
+            while (PrimeNumCalc( n ));
+
+            Console.WriteLine(sum);
+
+
+
+
+
+
+
+
 
         }
 
 
 
+        static bool PrimeNumCalc(int n)
+        {
+            int j = n - 1;
+            while (j > 1)
+            {
+                if (n % j == 0) { return false; }
+                j = j - 1;
+            }
+            return true;
+        }
 
+        static int[] PleaseEnterSomeNumbers(int iterations)
+        {
+
+            if (iterations == 1) { Console.WriteLine("Please enter one number:\n"); }
+            else { Console.WriteLine("Please enter {0} numbers:\n", iterations); }
+
+            int[] arriterations = new int[iterations];
+
+            for (int i = 0; i < iterations; i++)
+            {
+                //if (i > 0) { Console.Clear(); }
+                if (i != 0) { Console.WriteLine("Please enter a number: \n"); }
+                int line;
+                EnterNumber:
+                if (Int32.TryParse(Console.ReadLine(), out line)) { arriterations[i] = line; }
+                else { Console.WriteLine("\n This is not a number! \nPlease enter only numbers. \nNow lets try again: \n"); goto EnterNumber; }
+                //Console.Clear();
+            }
+
+            return arriterations;
+        }
 
     }
 }
